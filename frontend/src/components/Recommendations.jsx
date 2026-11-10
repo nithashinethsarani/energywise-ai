@@ -1,0 +1,15 @@
+export default function Recommendations({ tips }) {
+  if (!tips || tips.length === 0) {
+    return <div className="empty">උපදෙස් ලබාගැනීමට අවම වශයෙන් දින 14ක දත්ත ඇතුළත් කරන්න.</div>;
+  }
+  return (
+    <ul className="tips">
+      {tips.map((t, i) => (
+        <li key={i}>
+          <span className="b">💡</span>
+          <span>{t}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
