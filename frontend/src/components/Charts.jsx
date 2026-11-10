@@ -51,7 +51,7 @@ const baseOptions = {
 
 export function UsageChart({ records }) {
   if (!records || records.length === 0) {
-    return <div className="empty">තවම දත්ත නෑ. දකුණු පස form එකෙන් usage ඇතුළත් කරන්න.</div>;
+    return <div className="empty">No data yet. Enter usage using the form on the right.</div>;
   }
   const data = records.slice(-60);
   return (
@@ -82,7 +82,7 @@ export function ForecastChart({ pred, message }) {
   if (!pred) {
     return (
       <div className="empty">
-        {message || "Forecast එක පෙන්වීමට අවම වශයෙන් දින 14ක දත්ත අවශ්‍යයි."}
+        {message || "At least 14 days of data are required to show the forecast."}
       </div>
     );
   }
@@ -124,7 +124,7 @@ const DAYS = [
 
 export function WeekdayChart({ summary }) {
   if (!summary || !summary.by_weekday) {
-    return <div className="empty">Pattern විශ්ලේෂණයට තවත් දත්ත අවශ්‍යයි.</div>;
+    return <div className="empty">More data is needed for pattern analysis.</div>;
   }
   const vals = DAYS.map(([full]) => summary.by_weekday[full] ?? 0);
   return (

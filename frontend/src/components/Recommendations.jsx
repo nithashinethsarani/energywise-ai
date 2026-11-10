@@ -1,6 +1,6 @@
 export default function Recommendations({ tips }) {
   if (!tips || tips.length === 0) {
-    return <div className="empty">උපදෙස් ලබාගැනීමට අවම වශයෙන් දින 14ක දත්ත ඇතුළත් කරන්න.</div>;
+    return <div className="empty">Enter at least 14 days of data to get recommendations.</div>;
   }
   return (
     <ul className="tips">

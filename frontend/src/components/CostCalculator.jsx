@@ -11,7 +11,7 @@ export default function CostCalculator() {
     setErr("");
     const u = parseFloat(units);
     if (isNaN(u) || u < 0) {
-      setErr("නිවැරදි units අගයක් ඇතුළත් කරන්න.");
+      setErr("Please enter a valid units value.");
       return;
     }
     try {
@@ -29,23 +29,23 @@ export default function CostCalculator() {
           type="number"
           min="0"
           step="0.1"
-          placeholder="මාසික units (kWh)"
+          placeholder="Monthly units (kWh)"
           value={units}
           onChange={(e) => setUnits(e.target.value)}
         />
         <button className="btn" type="submit">
-          ගණනය
+          Calculate
         </button>
       </form>
       {err && <div className="msg-err">{err}</div>}
       {result && (
         <div className="calc-result">
           <div className="big">Rs. {Number(result.estimated_cost).toLocaleString("en-US")}</div>
-          <div className="sub">{result.units} kWh සඳහා ඇස්තමේන්තුව</div>
+          <div className="sub">Estimate for {result.units} kWh</div>
         </div>
       )}
       <p className="note">
-        * මෙය ආසන්න අගයක් පමණයි. නිල CEB / PUCSL tariff අනුව යාවත්කාලීන කළ යුතුයි.
+        * This is only an approximate value. It should be updated according to the official CEB / PUCSL tariff.
       </p>
     </div>
   );

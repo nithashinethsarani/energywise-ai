@@ -70,13 +70,13 @@ export default function App() {
             <h1>
               EnergyWise <span>AI</span>
             </h1>
-            <p>ගෘහ විදුලි පරිභෝජන විශ්ලේෂකය</p>
+            <p>Household Electricity Usage Analyzer</p>
           </div>
         </div>
         <div className="actions">
           <span className="pill">
             <span className={"dot " + (online === null ? "" : online ? "on" : "off")} />
-            {online === null ? "සම්බන්ධ වෙමින්..." : online ? "API සක්‍රියයි" : "API අක්‍රියයි"}
+            {online === null ? "Connecting..." : online ? "API online" : "API offline"}
           </span>
           <button className="btn ghost" onClick={load} disabled={loading}>
             {loading ? "Loading..." : "Refresh"}
@@ -85,16 +85,16 @@ export default function App() {
       </header>
 
       <section className="hero">
-        <h2>ඔබේ විදුලි පරිභෝජනය බුද්ධිමත්ව කළමනාකරණය කරන්න</h2>
+        <h2>Manage your electricity usage smartly</h2>
         <p>
-          දිනපතා usage එක ඇතුළත් කරන්න. AI මගින් ඉදිරි මාසයේ පරිභෝජනය සහ බිල ඇස්තමේන්තු කර,
-          Big Data analytics මගින් ඔබේ පරිභෝජන රටා හඳුනාගෙන, ඉතිරි කරගන්න උපදෙස් ලබා දෙනවා.
+          Enter your usage every day. The AI estimates next month's usage and bill, and Big Data
+          analytics identifies your usage patterns and gives you tips to save more.
         </p>
       </section>
 
       {online === false && (
         <div className="alert err">
-          ❌ Backend server එකට සම්බන්ධ වෙන්න බෑ. Backend terminal එකේ uvicorn run වෙනවද බලන්න, ඊට පස්සේ Refresh ඔබන්න.
+          ❌ Cannot connect to the backend server. Check whether uvicorn is running in the backend terminal, then press Refresh.
         </div>
       )}
 
@@ -103,16 +103,16 @@ export default function App() {
           <span>{pred.high_usage_flag ? "⚠️" : "✅"}</span>
           <span>
             {pred.high_usage_flag
-              ? "ඉදිරි මාසයේ පරිභෝජනය ඉහළයි."
-              : "ඉදිරි මාසයේ පරිභෝජනය සාමාන්‍ය මට්ටමේ පවතී."}
+              ? "Next month's usage is high."
+              : "Next month's usage is at a normal level."}
             {pct !== null &&
-              ` පසුගිය දින 30 හා සසඳන විට ${pct > 0 ? "+" : ""}${pct}%.`}
+              ` Compared to the last 30 days: ${pct > 0 ? "+" : ""}${pct}%.`}
           </span>
         </div>
       )}
 
       {online && !pred && predMsg && (
-        <div className="alert info">ℹ️ Prediction සඳහා: {predMsg}</div>
+        <div className="alert info">ℹ️ For prediction: {predMsg}</div>
       )}
 
       <StatCards pred={pred} summary={summary} />
@@ -121,8 +121,8 @@ export default function App() {
         <section className="card col-8">
           <div className="card-head">
             <div>
-              <h3>දෛනික පරිභෝජන ඉතිහාසය</h3>
-              <p>අවසන් දින 60 (kWh)</p>
+              <h3>Daily usage history</h3>
+              <p>Last 60 days (kWh)</p>
             </div>
             <span className="chip">{records.length} records</span>
           </div>
@@ -132,7 +132,7 @@ export default function App() {
         <section className="card col-4">
           <div className="card-head">
             <div>
-              <h3>සතියේ දින අනුව සාමාන්‍යය</h3>
+              <h3>Average by day of the week</h3>
               <p>Usage pattern (Big Data Analytics)</p>
             </div>
           </div>
@@ -144,8 +144,8 @@ export default function App() {
         <section className="card col-8">
           <div className="card-head">
             <div>
-              <h3>ඉදිරි මාසයේ forecast (AI)</h3>
-              <p>{pred ? `මාසය: ${pred.month}` : "Ridge Regression model"}</p>
+              <h3>Next month's forecast (AI)</h3>
+              <p>{pred ? `Month: ${pred.month}` : "Ridge Regression model"}</p>
             </div>
             {pred?.model_metrics && (
               <span className="chip">
@@ -159,8 +159,8 @@ export default function App() {
         <section className="card col-4">
           <div className="card-head">
             <div>
-              <h3>බිල ගණනය කරන්න</h3>
-              <p>Units ඇතුළත් කර ඇස්තමේන්තුව බලන්න</p>
+              <h3>Calculate your bill</h3>
+              <p>Enter units to see the estimate</p>
             </div>
           </div>
           <CostCalculator />
@@ -171,8 +171,8 @@ export default function App() {
         <section className="card col-5">
           <div className="card-head">
             <div>
-              <h3>අද usage ඇතුළත් කරන්න</h3>
-              <p>දිනපතා record එකක් එක් කරන්න</p>
+              <h3>Enter today's usage</h3>
+              <p>Add one record every day</p>
             </div>
           </div>
           <UsageForm onAdd={handleAdd} />
@@ -181,8 +181,8 @@ export default function App() {
         <section className="card col-7">
           <div className="card-head">
             <div>
-              <h3>ඉතිරි කරගැනීමේ උපදෙස්</h3>
-              <p>ඔබේ දත්ත මත පදනම්ව</p>
+              <h3>Saving tips</h3>
+              <p>Based on your data</p>
             </div>
           </div>
           <Recommendations tips={pred?.recommendations} />
@@ -193,8 +193,8 @@ export default function App() {
         <section className="card col-12">
           <div className="card-head">
             <div>
-              <h3>මෑත records</h3>
-              <p>අවසන් 8</p>
+              <h3>Recent records</h3>
+              <p>Last 8</p>
             </div>
           </div>
           <RecentRecords records={records} onDelete={handleDelete} />

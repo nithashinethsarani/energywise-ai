@@ -7,27 +7,27 @@ export default function StatCards({ pred, summary }) {
   const items = [
     {
       icon: "⚡",
-      label: "ඉදිරි මාසයේ units (AI)",
+      label: "Next month's units (AI)",
       value: fmt(pred?.predicted_units, 1),
       unit: pred ? "kWh" : "",
       accent: true,
     },
     {
       icon: "💰",
-      label: "ඇස්තමේන්තුගත බිල",
+      label: "Estimated bill",
       value: pred ? "Rs. " + fmt(pred.predicted_cost) : "—",
       unit: "",
       accent: true,
     },
     {
       icon: "📈",
-      label: "දෛනික සාමාන්‍යය",
+      label: "Daily average",
       value: fmt(summary?.avg_daily, 2),
-      unit: summary ? "kWh/දින" : "",
+      unit: summary ? "kWh/day" : "",
     },
     {
       icon: "🧾",
-      label: "පසුගිය දින 30 බිල",
+      label: "Bill for the last 30 days",
       value: summary ? "Rs. " + fmt(summary.last_30_days_cost) : "—",
       unit: "",
     },

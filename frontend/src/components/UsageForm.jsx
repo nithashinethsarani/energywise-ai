@@ -15,7 +15,7 @@ export default function UsageForm({ onAdd }) {
     setErr("");
     const u = parseFloat(units);
     if (isNaN(u) || u < 0 || u > 500) {
-      setErr("Units අගය 0 සහ 500 අතර විය යුතුයි.");
+      setErr("Units value must be between 0 and 500.");
       return;
     }
     setBusy(true);
@@ -39,7 +39,7 @@ export default function UsageForm({ onAdd }) {
     <form onSubmit={submit}>
       <div className="form-grid">
         <div className="field">
-          <label>දිනය</label>
+          <label>Date</label>
           <input type="date" value={date} onChange={(e) => setDate(e.target.value)} required />
         </div>
         <div className="field">
@@ -48,28 +48,28 @@ export default function UsageForm({ onAdd }) {
             type="number"
             step="0.01"
             min="0"
-            placeholder="උදා: 7.5"
+            placeholder="e.g. 7.5"
             value={units}
             onChange={(e) => setUnits(e.target.value)}
             required
           />
         </div>
         <div className="field">
-          <label>පවුලේ සාමාජිකයන් (optional)</label>
+          <label>Household members (optional)</label>
           <input type="number" min="1" max="30" value={hh} onChange={(e) => setHh(e.target.value)} />
         </div>
         <div className="field">
-          <label>උපකරණ සටහන (optional)</label>
+          <label>Appliance note (optional)</label>
           <input
             type="text"
-            placeholder="උදා: AC use කළා"
+            placeholder="e.g. Used the AC"
             value={note}
             onChange={(e) => setNote(e.target.value)}
           />
         </div>
         <div className="field full">
           <button className="btn" type="submit" disabled={busy}>
-            {busy ? "සුරකිමින්..." : "Record එක සුරකින්න"}
+            {busy ? "Saving..." : "Save record"}
           </button>
         </div>
       </div>
