@@ -1,7 +1,10 @@
-﻿import sqlite3
+﻿import os
+import sqlite3
 from pathlib import Path
 
-DB_PATH = Path(__file__).resolve().parent.parent / "energywise.db"
+DB_PATH = Path(
+    os.environ.get("DB_PATH", Path(__file__).resolve().parent.parent / "energywise.db")
+)
 
 
 def get_conn():
