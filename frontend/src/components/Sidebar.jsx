@@ -1,17 +1,21 @@
+import Icon from "./Icon";
+
 const ITEMS = [
-  ["dashboard", "📊", "Dashboard"],
-  ["forecast", "🔮", "AI Forecast"],
-  ["usage", "➕", "Add Usage"],
-  ["tips", "💡", "Saving Tips"],
-  ["bill", "🧮", "Bill Calculator"],
-  ["about", "ℹ️", "About System"],
+  ["dashboard", "dashboard", "Dashboard"],
+  ["forecast", "forecast", "AI Forecast"],
+  ["usage", "plus", "Add Usage"],
+  ["tips", "bulb", "Saving Tips"],
+  ["bill", "calc", "Bill Calculator"],
+  ["about", "info", "About System"],
 ];
 
 export default function Sidebar({ page, setPage, online }) {
   return (
     <aside className="sidebar">
       <div className="brand">
-        <div className="logo">⚡</div>
+        <div className="logo">
+          <Icon name="bolt" size={22} />
+        </div>
         <div>
           <h1>
             EnergyWise <span>AI</span>
@@ -27,7 +31,7 @@ export default function Sidebar({ page, setPage, online }) {
             className={"nav-item" + (page === id ? " active" : "")}
             onClick={() => setPage(id)}
           >
-            <span className="nav-ico">{icon}</span>
+            <Icon name={icon} size={19} />
             {label}
           </button>
         ))}
@@ -38,7 +42,6 @@ export default function Sidebar({ page, setPage, online }) {
           <span className={"dot " + (online === null ? "" : online ? "on" : "off")} />
           {online === null ? "Connecting..." : online ? "API online" : "API offline"}
         </span>
-        <p className="side-note">Emerging Technologies · Course Work 2026</p>
       </div>
     </aside>
   );

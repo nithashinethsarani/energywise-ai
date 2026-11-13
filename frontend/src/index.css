@@ -201,3 +201,14 @@ body {
   .stats.three { grid-template-columns: 1fr; }
   .arrow { display: none; }
 }
+/* ===== Icon polish ===== */
+.logo { color: #fff; }
+.nav-item svg { opacity: 0.9; }
+.stat .ico { color: var(--blue); }
+.tips li .b { color: var(--blue); }
+.alert { align-items: center; }
+.alert svg { flex-shrink: 0; }
+.alert.high svg { color: var(--warn); }
+.alert.ok svg { color: var(--ok); }
+.alert.err svg { color: var(--danger); }
+.alert.info svg { color: var(--blue); }
