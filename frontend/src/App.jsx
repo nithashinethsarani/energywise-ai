@@ -7,6 +7,7 @@ import UsageForm from "./components/UsageForm";
 import RecentRecords from "./components/RecentRecords";
 import Recommendations from "./components/Recommendations";
 import CostCalculator from "./components/CostCalculator";
+import Icon from "./components/Icon";
 
 const TITLES = {
   dashboard: ["Dashboard", "Overview of your household electricity usage"],
@@ -26,7 +27,7 @@ function UsageAlert({ pred, pct }) {
   if (!pred) return null;
   return (
     <div className={"alert " + (pred.high_usage_flag ? "high" : "ok")}>
-      <span>{pred.high_usage_flag ? "⚠️" : "✅"}</span>
+            <Icon name={pred.high_usage_flag ? "alert" : "check"} size={19} />
       <span>
         {pred.high_usage_flag
           ? "Next month's usage is high."
@@ -124,7 +125,8 @@ export default function App() {
 
         {online === false && (
           <div className="alert err">
-            ❌ Cannot connect to the backend server. Check that the backend is running, then press Refresh.
+                        <Icon name="alert" size={19} />
+            <span>Cannot connect to the backend server. Check that the backend is running, then press Refresh.</span>
           </div>
         )}
 
@@ -139,7 +141,10 @@ export default function App() {
             </section>
             <UsageAlert pred={pred} pct={pct} />
             {online && !pred && predMsg && (
-              <div className="alert info">ℹ️ Prediction: {predMsg}</div>
+                           <div className="alert info">
+                <Icon name="info" size={19} />
+                <span>Prediction: {predMsg}</span>
+              </div>
             )}
             <StatCards pred={pred} summary={summary} />
             <div className="grid">
@@ -329,7 +334,7 @@ export default function App() {
             </section>
             <div className="grid" style={{ marginTop: 18 }}>
               <section className="card col-6">
-                <div className="card-head"><div><h3>Emerging technologies</h3></div></div>
+                <div className="card-head"><div><h3>Technologies used</h3></div></div>
                 <div className="chips">
                   <span className="chip">AI (scikit-learn)</span>
                   <span className="chip">Big Data Analytics (pandas)</span>
@@ -351,7 +356,7 @@ export default function App() {
           </>
         )}
 
-        <p className="footer">EnergyWise AI · Emerging Technologies Course Work 2026</p>
+               <p className="footer">EnergyWise AI · Household Electricity Analyzer</p>
       </main>
     </div>
   );
